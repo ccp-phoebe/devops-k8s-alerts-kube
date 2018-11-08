@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: configmap-prometheus-global-kube
+  name: configmap-prometheus-global
   namespace: kube-monitor
 data:
   prometheus.yaml: |-
