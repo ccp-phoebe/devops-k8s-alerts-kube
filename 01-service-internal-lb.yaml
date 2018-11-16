@@ -5,14 +5,14 @@ metadata:
   name: kube-monitor-prometheus-internal-lb
   namespace: kube-monitor
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-internal: '0.0.0.0/0'
-    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:eu-west-1:906334554726:certificate/27e85d6c-14df-4599-858e-45465bc3d328
+    #service.beta.kubernetes.io/aws-load-balancer-internal: '0.0.0.0/0'
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:eu-central-1:645145707377:certificate/6e4f6c44-db6d-4feb-8621-ec42f3a29b69
     service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
     service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: '3600'
     service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: "App=eve-search,Finance=COGS"
     service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
-    external-dns.alpha.kubernetes.io/hostname: prometheus-global.evetech.net.
+    external-dns.alpha.kubernetes.io/hostname: prometheus-phoebe.ccp-cloud.net.
 spec:
   ports:
     - name: https
@@ -28,14 +28,14 @@ metadata:
   name: kube-monitor-prometheus-alertmanager-internal-lb
   namespace: kube-monitor
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-internal: '0.0.0.0/0'
-    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:eu-west-1:906334554726:certificate/a0f56f59-71e9-41e9-be26-b1213a2de022
+    #service.beta.kubernetes.io/aws-load-balancer-internal: '0.0.0.0/0'
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:eu-central-1:645145707377:certificate/6e4f6c44-db6d-4feb-8621-ec42f3a29b69
     service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
     service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: '3600'
     service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: "App=eve-search,Finance=COGS"
     service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
-    external-dns.alpha.kubernetes.io/hostname: alertmanager.prometheus-global.evetech.net.
+    external-dns.alpha.kubernetes.io/hostname: alertmanager.prometheus-phoebe.ccp-cloud.net.
 spec:
   ports:
     - name: https

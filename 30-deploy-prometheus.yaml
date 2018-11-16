@@ -22,9 +22,9 @@ spec:
       - name: prometheus-data-global
         persistentVolumeClaim:
           claimName: prometheus
-      - name: prometheus-alertmanager-global
+      - name: prometheus-global-alertmanager
         secret:
-          secretName: prometheus-alertmanager-global
+          secretName: prometheus-global-alertmanager
       # `prometheus` docker image uses `nobody:nogroup` as uid and gid
       securityContext:
         fsGroup: 65534
@@ -63,7 +63,7 @@ spec:
         - name: http
           containerPort: 9093
         volumeMounts:
-        - name: prometheus-alertmanager-global
+        - name: prometheus-global-alertmanager
           mountPath: /tmp
           readOnly: true
         resources:

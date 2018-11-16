@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-global
+  namespace: kube-monitor
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      # Prometheus docs: needed_disk_space = retention_time_seconds * ingested_samples_per_second * bytes_per_sample
+      # ingested_samples_per_second with rate(prometheus_tsdb_head_samples_appended_total[5m]) = 208
+      # Assuming worst case from Prometheus docs: On average, Prometheus uses only around 1-2 bytes per sample
+      # Retention is set to 15 days: 1296000 seconds
+      # 1296000 * 208 * 2 = 539136000 bytes (~540MB)
+      # Originally we used 1Gi here, but that ran out of space. 10Gi it is!
+      storage: 10Gi

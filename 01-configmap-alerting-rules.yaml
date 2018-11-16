@@ -1,4 +1,4 @@
-apiVersion: 1
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: configmap-prometheus-global-alerting-rules
@@ -6,32 +6,32 @@ metadata:
 data:
   rules.yaml: |-
     groups:
-    - name:
+    - name: prometheus.alerting.rules
       rules:
       - alert: Cluster CPU usage high
         expr: sum(kube_pod_container_resource_requests_cpu_cores{node=~"$node"}) / sum(kube_node_status_allocatable_cpu_cores{node=~"$node"}) > .8
-        for: 10m
+        for: 1m
         labels:
           severity: high
         annotations:
           summary: Cluster CPU usage is above 80% for over 10 minutes
       - alert: Cluster CPU usage very high
         expr: sum(kube_pod_container_resource_requests_cpu_cores{node=~"$node"}) / sum(kube_node_status_allocatable_cpu_cores{node=~"$node"}) > .9
-        for: 6m
+        for: 1m
         labels:
           severity: severe
         annotations:
           summary: Cluster CPU usage is above 90 for over 6 minutes%
       - alert: Cluster memory usage high
         expr: sum(kube_pod_container_resource_requests_memory_bytes{node=~"$node"}) / sum(kube_node_status_allocatable_memory_bytes{node=~"$node"}) > .8
-        for: 10m
+        for: 1m
         labels:
           severity: high
         annotations:
           summary: Cluster memory usage is above 80% for over 10 minutes
       - alert: Cluster memory usage very high
         expr: sum(kube_pod_container_resource_requests_memory_bytes{node=~"$node"}) / sum(kube_node_status_allocatable_memory_bytes{node=~"$node"}) > .9
-        for: 6m
+        for: 1m
         labels:
           severity: severe
         annotations:
@@ -44,22 +44,22 @@ data:
         annotations:
           summary: Cluster disk usage is above 80% for over 10 minutes
       - alert: Cluster disk usage high
-        expr: expr: (sum (node_filesystem_size{nodename=~"$node"}) - sum (node_filesystem_free{nodename=~"$node"})) / sum (node_filesystem_size{nodename=~"$node"}) > .9
-        for: 6m
+        expr: (sum (node_filesystem_size{nodename=~"$node"}) - sum (node_filesystem_free{nodename=~"$node"})) / sum (node_filesystem_size{nodename=~"$node"}) > .9
+        for: 1m
         labels:
           severity: severe
         annotations:
           summary: Cluster disk usage is above 90% for over 6 minutes
       - alert: Node out of disk
         expr: sum(kube_node_status_condition{condition="OutOfDisk", node=~"$node", status="true"}) > 0
-        for: 6m
+        for: 1m
         labels:
           severity: severe
         annotations:
           summary: Node out of disk
       - alert: Node unavailable
         expr: sum(kube_node_spec_unschedulable{node=~"$node"}) > 0
-        for: 6m
+        for: 1m
         labels:
           severity: severe
         annotations:
