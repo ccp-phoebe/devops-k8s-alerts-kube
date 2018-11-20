@@ -56,6 +56,12 @@ data:
         action: replace
         target_label: kubernetes_pod_name
 
+      - job_name: 'ec2-instances'
+
+        ec2_sd_configs:
+        - region: eu-central-1
+          port: 9100
+
     alerting:
       alertmanagers:
       - scheme: http
