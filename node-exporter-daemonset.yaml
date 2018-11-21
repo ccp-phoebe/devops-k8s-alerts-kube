@@ -6,6 +6,8 @@ metadata:
     component: node-exporter
     heritage: Tiller
     release: kube-prometheus
+  annotations:
+    prometheus.io/scrape-by-global: "true"
   name: kube-prometheus-exporter-node
   namespace: kube-monitor
 spec:
