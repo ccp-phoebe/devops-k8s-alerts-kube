@@ -12,6 +12,7 @@ spec:
       labels:
         app: prometheus
     spec:
+      serviceAccountName: prometheus
       volumes:
       - name: configmap-prometheus-global
         configMap:

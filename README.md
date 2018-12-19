@@ -1,1 +1,1 @@
-Alerting rules for kube-monitor namespace.
+Alerting rules for kube-monitor namespace.  Kube3.
